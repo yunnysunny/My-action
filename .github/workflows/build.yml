@@ -1,4 +1,8 @@
 name: Build
+# Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+permissions:
+  pages: write      # to deploy to Pages
+  id-token: write   # to verify the deployment originates from an appropriate source
 on:
   schedule:
     - cron: 0 0/6 * * *
@@ -99,13 +103,15 @@ jobs:
         with:
           name: lede-x86_64-packages
           path: pkgs
-
-      - name: Upload firmware to Download Station
-        if: ${{ github.event.inputs.upload_to_server || false }} && success()
-        run: |
-          cd bin/targets/*/*
-          zip -r -o -q -9 file.zip . -i *.gz
-          [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/lede/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
+      - name: Deploy to GitHub Pages
+        id: deployment-lede-x86_64
+        uses: actions/deploy-pages@v4
+      # - name: Upload firmware to Download Station
+      #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
+      #   run: |
+      #     cd bin/targets/*/*
+      #     zip -r -o -q -9 file.zip . -i *.gz
+      #     [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/lede/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
 
   openwrt-x86_64:
     runs-on: ${{ github.event.inputs.runner_image || 'ubuntu-latest' }}
@@ -181,13 +187,14 @@ jobs:
         with:
           name: openwrt_x86_64-packages
           path: pkgs
-
-      - name: Upload firmware to Download Station
-        if: ${{ github.event.inputs.upload_to_server || false }} && success()
-        run: |
-          cd bin/targets/*/*
-          zip -r -o -q -9 file.zip . -i *.gz
-          [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/openwrt/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+      # - name: Upload firmware to Download Station
+      #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
+      #   run: |
+      #     cd bin/targets/*/*
+      #     zip -r -o -q -9 file.zip . -i *.gz
+      #     [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/openwrt/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
 
   immortalwrt-x86_64:
     runs-on: ${{ github.event.inputs.runner_image || 'ubuntu-latest' }}
@@ -264,13 +271,14 @@ jobs:
           name: immortalwrt_x86_64-packages
           path: pkgs
 
-      - name: Upload firmware to Download Station
-        if: ${{ github.event.inputs.upload_to_server || false }} && success()
-        run: |
-          cd bin/targets/*/*
-          zip -r -o -q -9 file.zip . -i *.gz
-          [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/immortalwrt/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
-
+      # - name: Upload firmware to Download Station
+      #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
+      #   run: |
+      #     cd bin/targets/*/*
+      #     zip -r -o -q -9 file.zip . -i *.gz
+      #     [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/immortalwrt/x86_64" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
   immortalwrt-rm2100:
     runs-on: ${{ github.event.inputs.runner_image || 'ubuntu-latest' }}
     steps:
@@ -344,9 +352,11 @@ jobs:
           name: immortalwrt_ramips_mt7621-packages
           path: pkgs
 
-      - name: Upload firmware to Download Station
-        if: ${{ github.event.inputs.upload_to_server || false }} && success()
-        run: |
-          cd bin/targets/*/*
-          zip -r -o -q -9 file.zip . -i *.gz
-          [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/immortalwrt/RM2100" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
+      # - name: Upload firmware to Download Station
+      #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
+      #   run: |
+      #     cd bin/targets/*/*
+      #     zip -r -o -q -9 file.zip . -i *.gz
+      #     [[ -f file.zip ]] && curl -F "token=${{ secrets.UPLOAD_TOKEN }}" -F "location=Router/immortalwrt/RM2100" -F "file=@file.zip" ${{ secrets.MAIN_UPLOAD_PROCESSOR }}
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
