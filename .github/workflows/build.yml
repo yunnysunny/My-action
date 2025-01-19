@@ -4,8 +4,9 @@ permissions:
   pages: write      # to deploy to Pages
   id-token: write   # to verify the deployment originates from an appropriate source
 on:
-  schedule:
-    - cron: 0 0/6 * * *
+  # schedule:
+  #   - cron: 0 0/6 * * *
+  push:
 
   workflow_dispatch:
     inputs:
