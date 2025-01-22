@@ -108,7 +108,7 @@ jobs:
         id: deployment-lede-x86_64
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: lede-x86_64-packages
+          artifact_name: lede-x86_64-images
       # - name: Upload firmware to Download Station
       #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
       #   run: |
@@ -193,7 +193,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: openwrt_x86_64-packages
+          artifact_name: openwrt_x86_64-images
       # - name: Upload firmware to Download Station
       #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
       #   run: |
@@ -285,7 +285,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: immortalwrt_x86_64-packages
+          artifact_name: immortalwrt_x86_64-images
   immortalwrt-rm2100:
     runs-on: ${{ github.event.inputs.runner_image || 'ubuntu-latest' }}
     steps:
@@ -368,4 +368,4 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: immortalwrt_ramips_mt7621-packages
+          artifact_name: immortalwrt_ramips_mt7621-images
