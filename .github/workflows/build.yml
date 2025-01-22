@@ -198,12 +198,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: openwrt_x86_64-images
+          name: openwrt_x86_64-images2
           path: './images'
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: openwrt_x86_64-images
+          artifact_name: openwrt_x86_64-images2
       # - name: Upload firmware to Download Station
       #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
       #   run: |
@@ -288,7 +288,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: immortalwrt_x86_64-images
+          name: immortalwrt_x86_64-images2
           path: './images'
       # - name: Upload firmware to Download Station
       #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
@@ -299,7 +299,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: immortalwrt_x86_64-images
+          artifact_name: immortalwrt_x86_64-images2
   immortalwrt-rm2100:
     runs-on: ${{ github.event.inputs.runner_image || 'ubuntu-latest' }}
     steps:
@@ -375,7 +375,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: immortalwrt_ramips_mt7621-images
+          name: immortalwrt_ramips_mt7621-images2
           path: './images'
       # - name: Upload firmware to Download Station
       #   if: ${{ github.event.inputs.upload_to_server || false }} && success()
@@ -386,4 +386,4 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: immortalwrt_ramips_mt7621-images
+          artifact_name: immortalwrt_ramips_mt7621-images2
